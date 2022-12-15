@@ -1,31 +1,39 @@
-﻿/* Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
-Массив размером 2 x 2 x 2
-66(0,0,0) 25(0,1,0)
-34(1,0,0) 41(1,1,0)
-27(0,0,1) 90(0,1,1)
-26(1,0,1) 55(1,1,1)*/
+﻿/* Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.*/
 
-int[, ,] array1 = new int [2,2,3];
+int[,] array1 = new int [4,4];
+array1[0,0] = 1;
 
-    for (int i=0; i<array1.GetLength(0); i++)           // 
-        {
-            for (int j=0;j<array1.GetLength(1); j++)
-            { 
-                for (int z=0;z<array1.GetLength(2); z++)
-                array1[i, j, z] = new Random().Next(0,100);
-            }
+for (int j=1;j<array1.GetLength(1); j++)
+        { 
+            array1[0, j] = array1[0,0]+j;
+            array1[j, array1.GetLength(1)-1] = array1.GetLength(1)+j;
         }
+for (int j=0;j<array1.GetLength(1)-1; j++)
+        { 
+            array1[array1.GetLength(1)-1, j] = array1[array1.GetLength(1)-1,array1.GetLength(1)-1]+array1.GetLength(1)-1-j;
+        }
+for (int j=0;j<array1.GetLength(1)-1; j++)
+    {
+        array1[j+1, 0] = array1[array1.GetLength(1)-1,0]+2-j;
+    }
+for (int j=1;j<array1.GetLength(1)-1; j++)
+        { 
+            array1[array1.GetLength(1)-3, j] = array1[1,0]+j;
+        }
+for (int j=1;j<array1.GetLength(1)-2; j++)
+array1[j+1, array1.GetLength(1)-2] = array1[1,2]+j;
+array1[2,1] = array1[2,2]+1;
+
 PrintArray(array1);
 Console.WriteLine();
 
-void PrintArray(int[, ,] matr)
+void PrintArray(int[,] matr)
 {
     for (int i=0; i<matr.GetLength(0); i++)
     {
         for (int j=0;j<matr.GetLength(1); j++)
         {
-            for (int z=0;z<matr.GetLength(2); z++)
-            Console.Write($"{matr[i, j, z]},({i},{j},{z})");
+            Console.Write("{0,3}", matr[i, j]);
         }
         Console.WriteLine();
     }
