@@ -1,58 +1,55 @@
-﻿/* Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+﻿/* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+Например, даны 2 матрицы:
+2 4 | 3 4
+3 2 | 3 3
+Результирующая матрица будет:
+18 20
+15 18*/
 
-Например, задан массив:
+Console.Write($"Введите количество строк в первой матрице m1 = ");
+int m1 = int.Parse(Console.ReadLine()!);
+Console.Write($"Введите количество столбцов в первой матрице n1 = ");
+int n1 = int.Parse(Console.ReadLine()!);
 
-1 4 7 2
-5 9 2 3
-8 4 2 4
-5 2 6 7
+Console.Write($"Введите количество строк в второй матрице m2 = ");
+int m2 = int.Parse(Console.ReadLine()!);
+Console.Write($"Введите количество столбцов в второй матрице n2 = ");
+int n2 = int.Parse(Console.ReadLine()!);
 
-Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка*/
+int[,] array1 = new int [m1,n1];
+int[,] array2 = new int [m2,n2];
+int[,] array3 = new int [m1,n2];
 
-Console.Write($"Введите количество строк m = ");
-int m = int.Parse(Console.ReadLine()!);
-Console.Write($"Введите количество столбцов n = ");
-int n = int.Parse(Console.ReadLine()!);
-
-int[,] array = new int [m,n];
-int [] summa = new int[array.GetLength(0)];
-
-for (int i=0; i<array.GetLength(0); i++)           // Задаем массив
-    {
-        for (int j=0;j<array.GetLength(1); j++)
-            array[i, j] = new Random().Next(0,10);
-    }
-PrintArray(array);
-
-
-for (int i=0; i<array.GetLength(0); i++)
-    {
-        for (int j=0;j<array.GetLength(1); j++)
+if (n1!=m2) Console.Write($"Умножение невозможно. Количество столбцов в первой матрице должно быть равно количеству строк во второй матрице");
+else{
+    for (int i=0; i<array1.GetLength(0); i++)           // Задаем первую матрицу
         {
-            summa[i] = summa[i] + array[i,j];
+            for (int j=0;j<array1.GetLength(1); j++)
+            array1[i, j] = new Random().Next(0,3);
         }
-            
-    }
-for (int j1=0;j1<array.GetLength(0); j1++)
-Console.WriteLine($"Сумма элементов в {j1} строке равна {summa[j1]}");
-
-int min = summa[0];
-int k = 0;
-
-for (int j1=1;j1<array.GetLength(0); j1++)
-    if (summa[j1]<min) {min = summa[j1]; k = j1;}
-
-Console.WriteLine($"Наименьшая сумма равна {min} во {k} строке");
-
-/*for (int i=1; i<array.GetLength(0); i++)
-    {
-        for (int j=1;j<array.GetLength(1); j++)
-        {
-            if (array[i-1,j] > array[i-1,j-1]) (array[i-1,j-1], array[i-1 , j])=(array[i-1,j], array[i-1,j-1]);
-        }
-    }
+PrintArray(array1);
 Console.WriteLine();
-PrintArray(array);*/
+
+for (int i=0; i<array2.GetLength(0); i++)           // Задаем вторую матрицу
+    {
+        for (int j=0;j<array2.GetLength(1); j++)
+            array2[i, j] = new Random().Next(0,3);
+    }
+PrintArray(array2);
+Console.WriteLine();
+
+for (int i=0; i<array3.GetLength(0); i++)           // Переумножаем матрицы
+    {
+        for (int j=0;j<array3.GetLength(1); j++)
+        {
+            for (int k =0; k<array3.GetLength(1); k++)
+            {
+                array3[i, j] = array3[i, j]+array1[i,k]*array2[k,j];
+            }
+        }
+    }
+PrintArray(array3);
+}
 
 void PrintArray(int[,] matr)
 {
