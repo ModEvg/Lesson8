@@ -1,63 +1,31 @@
-﻿/* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-Например, даны 2 матрицы:
-2 4 | 3 4
-3 2 | 3 3
-Результирующая матрица будет:
-18 20
-15 18*/
+﻿/* Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+Массив размером 2 x 2 x 2
+66(0,0,0) 25(0,1,0)
+34(1,0,0) 41(1,1,0)
+27(0,0,1) 90(0,1,1)
+26(1,0,1) 55(1,1,1)*/
 
-Console.Write($"Введите количество строк в первой матрице m1 = ");
-int m1 = int.Parse(Console.ReadLine()!);
-Console.Write($"Введите количество столбцов в первой матрице n1 = ");
-int n1 = int.Parse(Console.ReadLine()!);
+int[, ,] array1 = new int [2,2,3];
 
-Console.Write($"Введите количество строк в второй матрице m2 = ");
-int m2 = int.Parse(Console.ReadLine()!);
-Console.Write($"Введите количество столбцов в второй матрице n2 = ");
-int n2 = int.Parse(Console.ReadLine()!);
-
-int[,] array1 = new int [m1,n1];
-int[,] array2 = new int [m2,n2];
-int[,] array3 = new int [m1,n2];
-
-if (n1!=m2) Console.Write($"Умножение невозможно. Количество столбцов в первой матрице должно быть равно количеству строк во второй матрице");
-else{
-    for (int i=0; i<array1.GetLength(0); i++)           // Задаем первую матрицу
+    for (int i=0; i<array1.GetLength(0); i++)           // 
         {
             for (int j=0;j<array1.GetLength(1); j++)
-            array1[i, j] = new Random().Next(0,3);
+            { 
+                for (int z=0;z<array1.GetLength(2); z++)
+                array1[i, j, z] = new Random().Next(0,100);
+            }
         }
 PrintArray(array1);
 Console.WriteLine();
 
-for (int i=0; i<array2.GetLength(0); i++)           // Задаем вторую матрицу
-    {
-        for (int j=0;j<array2.GetLength(1); j++)
-            array2[i, j] = new Random().Next(0,3);
-    }
-PrintArray(array2);
-Console.WriteLine();
-
-for (int i=0; i<array3.GetLength(0); i++)           // Переумножаем матрицы
-    {
-        for (int j=0;j<array3.GetLength(1); j++)
-        {
-            for (int k =0; k<array3.GetLength(1); k++)
-            {
-                array3[i, j] = array3[i, j]+array1[i,k]*array2[k,j];
-            }
-        }
-    }
-PrintArray(array3);
-}
-
-void PrintArray(int[,] matr)
+void PrintArray(int[, ,] matr)
 {
     for (int i=0; i<matr.GetLength(0); i++)
     {
         for (int j=0;j<matr.GetLength(1); j++)
         {
-            Console.Write("{0,3}", matr[i, j]);
+            for (int z=0;z<matr.GetLength(2); z++)
+            Console.Write($"{matr[i, j, z]},({i},{j},{z})");
         }
         Console.WriteLine();
     }
