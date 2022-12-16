@@ -25,7 +25,7 @@ for (int i=0; i<array.GetLength(0); i++)           // Задаем массив
 PrintArray(array);
 
 
-for (int i=0; i<array.GetLength(0); i++)
+for (int i=0; i<array.GetLength(0); i++)  // Нахождение суммы элементов в каждой строке
     {
         for (int j=0;j<array.GetLength(1); j++)
         {
@@ -39,22 +39,13 @@ Console.WriteLine($"Сумма элементов в {j1} строке равн�
 int min = summa[0];
 int k = 0;
 
-for (int j1=1;j1<array.GetLength(0); j1++)
+for (int j1=1;j1<array.GetLength(0); j1++)  // Нахождение минимального значения среди всех сумм
     if (summa[j1]<min) {min = summa[j1]; k = j1;}
 
 Console.WriteLine($"Наименьшая сумма равна {min} во {k} строке");
 
-/*for (int i=1; i<array.GetLength(0); i++)
-    {
-        for (int j=1;j<array.GetLength(1); j++)
-        {
-            if (array[i-1,j] > array[i-1,j-1]) (array[i-1,j-1], array[i-1 , j])=(array[i-1,j], array[i-1,j-1]);
-        }
-    }
-Console.WriteLine();
-PrintArray(array);*/
 
-void PrintArray(int[,] matr)
+void PrintArray(int[,] matr)  // Вывод массива на экран
 {
     for (int i=0; i<matr.GetLength(0); i++)
     {
