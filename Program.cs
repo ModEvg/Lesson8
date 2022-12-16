@@ -12,18 +12,29 @@ for (int i=0; i<array.GetLength(0); i++)           // Задаем массив
             array[i, j] = new Random().Next(0,10);
     }
 PrintArray(array);
-
-for (int i=1; i<array.GetLength(0); i++)
+int a = 0;
+for (int i=0; i<array.GetLength(0); i++)
     {
-        for (int j=1;j<array.GetLength(1); j++)
+        while (a<array.GetLength(1))
         {
-            if (array[i-1,j] > array[i-1,j-1]) (array[i-1,j-1], array[i-1 , j])=(array[i-1,j], array[i-1,j-1]);
+            bool swapped = false;
+            for (int j=0;j<array.GetLength(1)-1; j++)
+            {
+                if (array[i,j]<array[i,j+1])
+                {
+                    (array[i,j],array[i,j+1]) = (array[i,j+1],array[i,j]);
+                    swapped = true;
+                }
+            }
+            if (swapped == false)
+            break;
         }
     }
+
 Console.WriteLine();
 PrintArray(array);
 
-void PrintArray(int[,] matr)
+void PrintArray(int[,] matr)   //Вывод массива
 {
     for (int i=0; i<matr.GetLength(0); i++)
     {
