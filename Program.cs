@@ -5,7 +5,7 @@
 27(0,0,1) 90(0,1,1)
 26(1,0,1) 55(1,1,1)*/
 
-int[, ,] array1 = new int [2,2,3];
+int[, ,] array1 = new int [2,2,2];
 
     for (int i=0; i<array1.GetLength(0); i++)           // 
         {
@@ -15,7 +15,7 @@ int[, ,] array1 = new int [2,2,3];
                 array1[i, j, z] = new Random().Next(0,100);
             }
         }
-PrintArray(array1);
+PrintArray(array1); 
 Console.WriteLine();
 
 void PrintArray(int[, ,] matr)
